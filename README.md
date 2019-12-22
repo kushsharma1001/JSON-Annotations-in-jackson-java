@@ -9,7 +9,8 @@ public class Person {
     private boolean isMale;
     private Address address;
 
-    //getters and setters
+    //getters and setters must be there
+    //default constructor is must. we can leave it empty.
 }
 
 public class Address {
@@ -17,7 +18,8 @@ public class Address {
     private String city;
     private String state;
     private String zipCode;
-        //getters and setters
+    //getters and setters must be there
+    //default constructor is must. we can leave it empty.
 }
 
 1) By default, if you return an object where instance variable is not initialized, then, in UI, it receives null values also.
@@ -82,4 +84,11 @@ output will be skiping null values and boolean isMale will be shown as isMale on
    "isMale":true
 }
    
-   
+3) Above 2 points talk about if UI or user uses the api which returns Person object. But, what if we have a POST api exposed and we take some json from user/postman. Then, apart from the variables available in Person class, they may pass additional fields. By default, we POST call to such an API happens with additional fields, it throws exception. We can allow it to happen by using annotation: 
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Person {
+    // ...
+}
+
+This, we can make a POST call to our api now even with additional fields. It will ignore the fields sent in Postman by user which are not available in our Person class and only map the fields available in Person class.
