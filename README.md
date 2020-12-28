@@ -1,4 +1,4 @@
-# JSON-in-java
+# JSON-Annotations-in-jackson-java
 How to make good use of a Java class to handle json repsonses in an API.
 
 public class Person {
